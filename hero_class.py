@@ -1,13 +1,24 @@
 class Hero:
     def __init__(self, name):
         self.name = name
+        # Level Up
         self.level = 1
+        self.xp = 0
+        self.hp = 10
+        # Stats
         self.strength = 5
         self.agility = 5
         self.intelligence = 5
         self.luck = 5
-        self.xp = 0
-
+        # Equipment
+        self.gold = 50
+        self.equipment = {
+            'left_hand': 'empty',
+            'right_hand': 'empty',
+            'head': 'empty',
+            'body': 'empty',
+        }
+        self.inventory = ['Lesser Healing Potion','Lesser Healing Potion']
     def level_up(self):
         self.level += 1
         self.strength += 1
@@ -19,10 +30,11 @@ class Hero:
 class Warrior(Hero):
     def __init__(self, name):
         super().__init__(name)
+        # Stats
+        self.hp = 16
         self.strength = 10
         self.agility = 8
         self.intelligence = 3
-        self.weapon = 'Broken Sword'
 
     def level_up(self):
         super().level_up()
@@ -33,10 +45,11 @@ class Warrior(Hero):
 class Wizard(Hero):
     def __init__(self, name):
         super().__init__(name)
+        # Stats
+        self.hp = 12
         self.strength = 3
         self.agility = 8
         self.intelligence = 10
-        self.weapon = 'Novice Wand'
 
     def level_up(self):
         super().level_up()
@@ -47,11 +60,12 @@ class Wizard(Hero):
 class Rogue(Hero):
     def __init__(self, name):
         super().__init__(name)
+        #Stats
+        self.hp = 14
         self.agility = 10
         self.luck = 9
         self.strength = 3
         self.intelligence = 6
-        self.weapon = 'Rusty Dagger'
     def level_up(self):
         super().level_up()
         self.strength += 1
