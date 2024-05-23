@@ -1,14 +1,15 @@
-class Enemy:
-    def __init__(self):
-        self.hp = 1
-        self.strength = 1
-        self.agility = 1
-        self.intelligence = 1
+from classes.generic_character_class import generic_character
 
-class Goblin(Enemy):
-    def __init__(self):
-        super().__init__()
-        self.hp = 10
+class Goblin(generic_character):
+    def __init__(self, name):
+        super().__init__(name)
+        self.hp = 5
+        self.current_hp = self.hp
         self.strength = 3
-        self.agility = 1
-        self.intelligence = 1
+        self.agility = 3
+        self.intelligence = 3
+        self.luck = 3
+        self.status = {
+            'bleeding': False,
+            'poisoned': False,
+        }

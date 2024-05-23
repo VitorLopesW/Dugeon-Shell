@@ -1,18 +1,13 @@
 from classes.weapon_class import * 
+from classes.generic_character_class import generic_character
+import random
 
-class Hero:
+class Hero(generic_character):
     def __init__(self, name):
-        self.name = name
+        super().__init__(name)
         # Level Up
         self.level = 1
         self.xp = 0
-        self.hp = 10
-        self.current_hp = self.hp
-        # Stats
-        self.strength = 5
-        self.agility = 5
-        self.intelligence = 5
-        self.luck = 5
         # Equipment
         self.gold = 50
         self.equipment = {
@@ -48,6 +43,36 @@ class Hero:
             self.add_to_inventory(unequipped_equipment)
         else:
             pass
+    # Attack 
+    def get_attack(self, attack_position, equipment_position):
+        equiped_weapon = self.equipment[equipment_position]
+        active_attack = equiped_weapon.attacks[attack_position]
+        base_damage = equiped_weapon.damage + active_attack.damage
+        # Add random damage based on the modifier
+        division = 3
+        if self.modifier == 'agility':
+            division = 2
+        # Minimum and Maximum Damage
+        minimum_damage = int(self.__dict__[self.modifier]/division)
+        maximum_damage = self.__dict__[self.modifier]
+        # Total Damage
+        total_damage = base_damage + random.randint(minimum_damage, maximum_damage)
+        # critical hit
+        critical_chance = random.randint(1, 100)
+        # critical modifier
+        if equiped_weapon.critical_chance != 'default':
+            critical_chance += equiped_weapon.critical_chance
+        if active_attack.critical_chance != 'default':
+            critical_chance += active_attack.critical_chance
+        if(critical_chance >= 90):
+            total_damage = total_damage * 1.5
+        # special effects
+        check_special_effect = active_attack.special()
+        special_effect = None
+        if check_special_effect != None:
+            special_effect = check_special_effect.name
+        # return
+        return int(total_damage), critical_chance >= 90, special_effect
     
 
 class Warrior(Hero):
@@ -59,6 +84,7 @@ class Warrior(Hero):
         self.strength = 10
         self.agility = 8
         self.intelligence = 3
+        self.modifier = 'strength'
         # Equipment
         self.equipment['right_hand'] = rusty_sword()
 
@@ -77,6 +103,7 @@ class Wizard(Hero):
         self.strength = 3
         self.agility = 8
         self.intelligence = 10
+        self.modifier = 'intelligence'
         # Equipment
         self.equipment['right_hand'] = wooden_wand()
 
@@ -96,6 +123,7 @@ class Rogue(Hero):
         self.luck = 9
         self.strength = 3
         self.intelligence = 6
+        self.modifier = 'agility'
         # Equipment
         self.equipment['right_hand'] = dagger()
         self.gold += 100

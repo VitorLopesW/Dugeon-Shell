@@ -1,28 +1,34 @@
 import os
 
 from classes.hero_class import *
-from classes.enemy_class import Goblin
+from classes.enemy_class import *
 
 from utils.miscellaneous import clear_console
 from utils.ascii_arts import *
 
 player = Warrior('Guts')
+enemy  = Goblin('Mokoto Nobunaga, the Goblin!')
 
 
-def battle():
+#print(player.get_attack(0, 'right_hand'))
+
+
+def battle(pc, npc):
     clear_console()
     print(ascii_battle)
-    print(f"{player.name} VS Goblin")
+    print(f"{pc.name} VS {npc.name}!")
     # Health Bars
-    print(f"{player.name}: {'█' * player.hp}")
-    print(f"Goblin: {'█' * 10}")    
-    print("------")
+    health_bar(pc)
     # Player Stats
-    print(f"| Level: {player.level} | HP: {player.hp}")
-    print(f"| Strength: {player.strength} | Agility: {player.agility} | Intelligence: {player.intelligence} | Luck: {player.luck}")
+    print(f"| Level: {pc.level} | HP: {pc.hp}")
+    print(f"| Strength: {pc.strength} | Agility: {pc.agility} | Intelligence: {pc.intelligence} | Luck: {pc.luck}")
     # Actions
     print("------")
     print("| Actions:")
     print("| 1. Attack | 2. Use Item | 3. Check Equipament | 4. Run")
 
-battle()
+def health_bar(character):
+    print(f"{character.name} | HP: {character.current_hp}/{character.hp}")
+    print(f"{10 * '■'}")
+
+battle(player, enemy)
