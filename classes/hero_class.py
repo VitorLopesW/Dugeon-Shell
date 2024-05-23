@@ -1,4 +1,4 @@
-from weapon_class import * 
+from classes.weapon_class import * 
 
 class Hero:
     def __init__(self, name):

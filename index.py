@@ -1,6 +1,6 @@
 import os
 
-from classes.hero_class import Warrior, Wizard, Rogue
+from classes.hero_class import *
 from classes.enemy_class import Goblin
 from utils.miscellaneous import clear_console
 
