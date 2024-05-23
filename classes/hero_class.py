@@ -12,7 +12,7 @@ class Hero(generic_character):
         self.gold = 50
         self.equipment = {
             'left_hand': 'empty',
-            'right_hand': Weapon(),
+            'right_hand': 'empty',
             'head': 'empty',
             'body': 'empty',
         }
@@ -43,6 +43,9 @@ class Hero(generic_character):
             self.add_to_inventory(unequipped_equipment)
         else:
             pass
+    def check_equipment(self, bodyPart):
+        return self.equipment[bodyPart]
+        
     # Attack 
     def get_attack(self, attack_position, equipment_position):
         equiped_weapon = self.equipment[equipment_position]
@@ -86,7 +89,7 @@ class Warrior(Hero):
         self.intelligence = 3
         self.modifier = 'strength'
         # Equipment
-        self.equipment['right_hand'] = rusty_sword()
+        self.equipment['left_hand'] = dagger()
 
     def level_up(self):
         super().level_up()
