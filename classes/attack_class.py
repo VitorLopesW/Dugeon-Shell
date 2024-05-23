@@ -25,3 +25,28 @@ class blade_attack(attack):
         else:
             return None
 
+class slash(blade_attack):
+    def __init__(self):
+        super().__init__('Slash', 'A simple slash')
+        self.damage = 2
+        self.velocity = 1.2
+        self.critical_damage = 1.5
+        self.critical_chance = 10
+
+class stab(blade_attack):
+    def __init__(self):
+        super().__init__('Stab', 'A quick stab')
+        self.damage = 1
+        self.velocity = 2
+        self.critical_damage = 2
+        self.critical_chance = 5
+
+class mordhau(blade_attack):
+    def __init__(self):
+        super().__init__('Mordhau', 'A powerful overhead swing')
+        self.damage = 3
+        self.velocity = 0.6
+        self.critical_damage = 1.5
+        self.critical_chance = 15
+    def special(self):
+        return None

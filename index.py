@@ -2,19 +2,16 @@ import os
 
 from classes.hero_class import *
 from classes.enemy_class import Goblin
+
 from utils.miscellaneous import clear_console
+from utils.ascii_arts import *
 
 player = Warrior('Guts')
 
 
 def battle():
     clear_console()
-    print("""
- ___   _ _____ _____ _    ___ 
-| _ ) /_\_   _|_   _| |  | __|
-| _ \/ _ \| |   | | | |__| _| 
-|___/_/ \_\_|   |_| |____|___|
-    """)
+    print(ascii_battle)
     print(f"{player.name} VS Goblin")
     # Health Bars
     print(f"{player.name}: {'█' * player.hp}")

@@ -1,3 +1,5 @@
+from classes.attack_class import *
+
 class Weapon:
     def __init__(self):
         self.name = 'Hand'
@@ -13,6 +15,11 @@ class Blade (Weapon):
         super().__init__()
         self.base_damage = 2
         self.type = 'Blade'
+        self.atacks = [
+            slash(),
+            stab(),
+            mordhau()
+        ]
 
 class rusty_sword (Blade):
     def __init__(self):
