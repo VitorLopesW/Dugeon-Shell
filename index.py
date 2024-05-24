@@ -5,19 +5,28 @@ from classes.enemy_class import *
 
 # Character Creation
 from character_creation.index import *
+# Adventure
+from adventure.index import *
 # Combat 
 from combat.index import *
 # Utilities
 from utils.miscellaneous import *
 from utils.ascii_arts import *
 
-player = Warrior('Hanzo')
-enemy  = Goblin('Nobunaga, the Goblin')
+player = None
 
+# Dev_Mode
+dev_mode = True
 
 def newGame():
-    ascii_new_game()
-    create_character()
+    ## DELETE THIS LINE IN THE FINAL VERSION
+    if dev_mode:
+        clear_console()
+        player = Warrior('Vitor')
+        adventure(player)
+    else:
+        ascii_new_game()
+        create_character(player)
 
 def ascii_new_game():
     clear_console()

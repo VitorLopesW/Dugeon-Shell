@@ -53,6 +53,18 @@ class Hero(generic_character):
             pass
     def check_equipment(self, bodyPart):
         return self.equipment[bodyPart]
+    # story functions
+    def equiped_weapons_name(self):
+        left_hand = self.check_equipment('left_hand')
+        right_hand = self.check_equipment('right_hand')
+        if left_hand != 'empty' and right_hand != 'empty':
+            return f"{left_hand.name} and {right_hand.name}"
+        elif left_hand != 'empty':
+            return left_hand.name
+        elif right_hand != 'empty':
+            return right_hand.name
+        else:
+            return 'Unarmed'
         
     # Attack 
     def get_attack(self, equiped_weapon, active_attack):
@@ -98,7 +110,6 @@ class Warrior(Hero):
         self.intelligence = 3
         self.modifier = 'strength'
         # Equipment
-        self.equipment['left_hand'] = rusty_sword()
         self.equipment['right_hand'] = rusty_sword()
         
 
