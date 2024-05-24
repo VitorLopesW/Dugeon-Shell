@@ -10,3 +10,8 @@ def porcentage(a, b):
     
 def clear_console():
     os.system('cls')
+
+def continue_game(reset = False):
+    input("Press any key to continue...")
+    if reset == 'clear':
+        clear_console()

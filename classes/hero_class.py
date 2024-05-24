@@ -26,6 +26,14 @@ class Hero(generic_character):
         self.luck += 1
         print(f"{self.name} has leveled up! {self.name} is now level {self.level}.")
     # Inventory Management
+    def add_xp(self, xp):
+        self.xp += xp
+        # TODO improve this
+        if self.xp >= 100:
+            self.level_up()
+            self.xp = 0
+    def add_gold(self, gold):
+        self.gold += gold
     def add_to_inventory(self, item):
         self.inventory.append(item)
     def remove_from_inventory(self, item):
@@ -47,9 +55,8 @@ class Hero(generic_character):
         return self.equipment[bodyPart]
         
     # Attack 
-    def get_attack(self, attack_position, equipment_position):
-        equiped_weapon = self.equipment[equipment_position]
-        active_attack = equiped_weapon.attacks[attack_position]
+    def get_attack(self, equiped_weapon, active_attack):
+        print(active_attack.name)
         base_damage = equiped_weapon.damage + active_attack.damage
         # Add random damage based on the modifier
         division = 3
@@ -69,13 +76,15 @@ class Hero(generic_character):
             critical_chance += active_attack.critical_chance
         if(critical_chance >= 90):
             total_damage = total_damage * 1.5
+        # Velocity
+        velocity = equiped_weapon.velocity + active_attack.velocity
         # special effects
         check_special_effect = active_attack.special()
         special_effect = None
         if check_special_effect != None:
             special_effect = check_special_effect.name
         # return
-        return int(total_damage), critical_chance >= 90, special_effect
+        return int(total_damage), critical_chance >= 90, velocity, special_effect
     
 
 class Warrior(Hero):
@@ -89,7 +98,9 @@ class Warrior(Hero):
         self.intelligence = 3
         self.modifier = 'strength'
         # Equipment
-        self.equipment['left_hand'] = dagger()
+        self.equipment['left_hand'] = rusty_sword()
+        self.equipment['right_hand'] = rusty_sword()
+        
 
     def level_up(self):
         super().level_up()
