@@ -16,7 +16,7 @@ def adventure(player, story_unfolded = [], choosen_story = None):
         if list[0] == 'new_line':
             print_story(story_unfolded)
             new_line(story_unfolded, list[1])
-            continue_game('clear')
+            continue_game_with_menu('clear', player)
         elif list[0] == 'random_event':
             # param 
             # list[1] = list : events
