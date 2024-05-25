@@ -3,11 +3,14 @@ import random
 
 from utils.miscellaneous import *
 from adventure.storys  import *
+from combat.index import *
 
 
 def adventure(player, story_unfolded = [], choosen_story = None):
     if choosen_story == None:
-        choosen_story = intro(player)[0]
+        choosen_story = intro(player)
+        #choosen_story = story_battle(player)
+
 
     for list in choosen_story:
         if list[0] == 'new_line':
@@ -29,17 +32,27 @@ def adventure(player, story_unfolded = [], choosen_story = None):
             # list[2] = list : options
             # list[3] = list : paths
             while True:
-                player_input = input(list[1])
-                options_list = list[2]
-                paths_list = list[3]
-                if player_input in options_list:
-                    input_index = options_list.index(player_input)
-                    choosen_story = paths_list[input_index]
-                    return adventure(player, story_unfolded, choosen_story)
+                print_story(story_unfolded)
+                while True:
+                    player_input = input(f"{colors.yellow}{list[1]}{colors.end}")
+                    options_list = list[2]
+                    paths_list = list[3]
+                    if player_input in options_list:
+                        input_index = options_list.index(player_input)
+                        choosen_story = paths_list[input_index]
+                        clear_console()
+                        return adventure(player, story_unfolded, choosen_story)
+                    else:
+                        clear_console()
+                        print_story(story_unfolded)
+                        print(f"{colors.red}Invalid option{colors.end}")
+        elif list[0] == 'battle':
+            # param 
+            # list[1] = npc : npc
+            npc = list[1]
+            return battle(player, npc)
         elif list[0] == 'new_function':
             new_story_path = list[1]
-            print(list[1])
-            input('stop')
             return adventure(player, story_unfolded, new_story_path)
 
                 
