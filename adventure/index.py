@@ -3,9 +3,9 @@ import random
 
 from utils.miscellaneous import *
 from adventure.storys  import *
-from combat.index import *
 
-
+def debug():
+    print('debug')
 def adventure(player, story_unfolded = [], choosen_story = None):
     if choosen_story == None:
         choosen_story = intro(player)
@@ -47,10 +47,13 @@ def adventure(player, story_unfolded = [], choosen_story = None):
                         print_story(story_unfolded)
                         print(f"{colors.red}Invalid option{colors.end}")
         elif list[0] == 'battle':
+            from combat.index import battle
             # param 
             # list[1] = npc : npc
+            # list[2] = function : new story path
             npc = list[1]
-            return battle(player, npc)
+            new_story_path = list[2]
+            return battle(player, npc,[story_unfolded, new_story_path])
         elif list[0] == 'new_function':
             new_story_path = list[1]
             return adventure(player, story_unfolded, new_story_path)

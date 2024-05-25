@@ -5,7 +5,7 @@ class Goblin(generic_character):
     def __init__(self, name):
         super().__init__(name)
         # hp
-        self.hp = 20
+        self.hp = 1
         self.current_hp = self.hp
         # Type
         self.type = 'Goblin'

@@ -17,6 +17,9 @@ class Hero(generic_character):
             'body': 'empty',
         }
         self.inventory = ['Lesser Healing Potion','Lesser Healing Potion']
+        # Moral
+        self.good_moral = 0
+        self.bad_moral = 0
     # Level Up
     def level_up(self):
         self.level += 1
@@ -25,7 +28,7 @@ class Hero(generic_character):
         self.intelligence += 1
         self.luck += 1
         print(f"{self.name} has leveled up! {self.name} is now level {self.level}.")
-    # Inventory Management
+    # XP and Gold
     def add_xp(self, xp):
         self.xp += xp
         # TODO improve this
@@ -34,6 +37,7 @@ class Hero(generic_character):
             self.xp = 0
     def add_gold(self, gold):
         self.gold += gold
+    # Inventory Management
     def add_to_inventory(self, item):
         self.inventory.append(item)
     def remove_from_inventory(self, item):
@@ -65,6 +69,19 @@ class Hero(generic_character):
             return right_hand.name
         else:
             return 'Unarmed'
+    # Moral
+    def moral(self, int):
+        if int > 0:
+            self.good_moral += int
+        else:
+            self.bad_moral += int
+    def check_moral(self):
+        if self.good_moral > self.bad_moral:
+            return 'good'
+        elif self.bad_moral > self.good_moral:
+            return 'bad'
+        else:
+            return 'neutral'
         
     # Attack 
     def get_attack(self, equiped_weapon, active_attack):

@@ -1,8 +1,8 @@
-
 from utils.miscellaneous import *
 from utils.ascii_arts import *
 
-def battle(pc, npc, turn = 1, actions_position = 'menu'):
+
+def battle(pc, npc, story_frozen, turn = 1, actions_position = 'menu'):
     clear_console()
     print(ascii_battle)
     print(f"| {colors.blue}{pc.name} VS {npc.name}!{colors.end}")
@@ -18,7 +18,7 @@ def battle(pc, npc, turn = 1, actions_position = 'menu'):
     print(f"| {colors.yellow}Turn: {turn}{colors.end}")
     # Actions
     print(ascii_bar)
-    battle_actions(pc, npc, turn, actions_position)
+    battle_actions(pc, npc, story_frozen, turn, actions_position)
 
 def health_bar(character, total_squares):
     current_hp_porcentage = porcentage(character.current_hp, character.hp)
@@ -42,7 +42,7 @@ def player_stats(character):
         line_two += f"| {component[0]}{component[1]}{colors.end} "
     print(line_two)
 
-def battle_actions(pc, npc, turn, position):
+def battle_actions(pc, npc, story_frozen, turn, position):
     if position == 'menu':
         print("| Actions:")
         menu = ''
@@ -58,7 +58,7 @@ def battle_actions(pc, npc, turn, position):
         while True:
             input_action = input("| Choose an action: ")
             if input_action == '1':
-                battle(pc, npc, turn, 'weapon_select')
+                battle(pc, npc, story_frozen, turn, 'weapon_select')
                 break
             elif input_action == '2':
                 break
@@ -90,30 +90,30 @@ def battle_actions(pc, npc, turn, position):
                 input_weapon = input('| Choose a weapon: ')
                 if left_hand_only:
                     if input_weapon == '1':
-                        attack_select(pc, npc, turn, pc.check_equipment('left_hand'), colors.blue)
+                        attack_select(pc, npc, story_frozen, turn, pc.check_equipment('left_hand'), colors.blue)
                         break
                     else:
-                        battle(pc, npc, turn, 'menu')
+                        battle(pc, npc, story_frozen, turn, 'menu')
                         break
                 elif right_hand_only:
                     if input_weapon == '1':
-                        attack_select(pc, npc, turn, pc.check_equipment('right_hand'), colors.green)
+                        attack_select(pc, npc, story_frozen, turn, pc.check_equipment('right_hand'), colors.green)
                         break
                     else:
-                        battle(pc, npc, turn, 'menu')
+                        battle(pc, npc, story_frozen, turn, 'menu')
                         break
                 elif both_hands:
                     if input_weapon == '1':
-                        attack_select(pc, npc, turn, pc.check_equipment('left_hand'), colors.blue)
+                        attack_select(pc, npc, story_frozen, turn, pc.check_equipment('left_hand'), colors.blue)
                         break
                     elif input_weapon == '2':
-                        attack_select(pc, npc, turn, pc.check_equipment('right_hand'), colors.green)
+                        attack_select(pc, npc, story_frozen, turn, pc.check_equipment('right_hand'), colors.green)
                         break
                     else:
-                        battle(pc, npc, turn, 'menu')
+                        battle(pc, npc, story_frozen, turn, 'menu')
                         break
 
-def attack_select(pc, npc, turn, weapon, txt_color):
+def attack_select(pc, npc, story_frozen, turn, weapon, txt_color):
     colors_loop = [colors.blue, colors.green, colors.yellow, colors.cyan, colors.red, colors.magenta]
     print("| Attacks:")
     attack_list = ''
@@ -127,12 +127,12 @@ def attack_select(pc, npc, turn, weapon, txt_color):
         input_attack = input('| Choose an attack: ')
         list_attack_length = len(weapon.attacks)
         if int(input_attack) <= list_attack_length:
-            attack_logic(pc, npc, turn, weapon, weapon.attacks[int(input_attack) - 1])
+            attack_logic(pc, npc, story_frozen, turn, weapon, weapon.attacks[int(input_attack) - 1])
             break
         elif int(input_attack) == list_attack_length + 1:
-            battle(pc, npc, turn, 'weapon_select')
+            battle(pc, npc, story_frozen, turn, 'weapon_select')
 
-def attack_logic(pc, npc, turn, weapon, attack):
+def attack_logic(pc, npc, story_frozen, turn, weapon, attack):
     # Player Attack
     # tuple : attack stats 
         # int : damage
@@ -155,9 +155,6 @@ def attack_logic(pc, npc, turn, weapon, attack):
     def pc_attack():
         print(pc_description)
         npc.modify_hp(-attack_damage)
-        if npc.current_hp <= 0:
-            print(ascii_bar)
-            print(f"| {colors.green}{npc.name} has been defeated!{colors.end}")
     def npc_attack():
         print(npc_description)
         pc.modify_hp(-enemy_attack_damage)
@@ -175,22 +172,32 @@ def attack_logic(pc, npc, turn, weapon, attack):
     pc_is_dead = pc.current_hp <= 0
     npc_is_dead = npc.current_hp <= 0
     if(npc_is_dead):
-        end_of_battle(pc, npc)
+        end_of_battle(pc, npc, story_frozen)
     elif(pc_is_dead):
         print(ascii_bar)
         print(f"| {colors.red}{pc.name} has been defeated!{colors.end}")
         print(f'| {colors.red}Your story comes to an end.{colors.end}')
         print(f"| {colors.red}GAME OVER!{colors.end}") 
     else:
-        continue_game = input('| Type any key to continue: ')
+        continue_game()
         print(ascii_bar)
-        battle(pc, npc, turn + 1, 'menu')
+        battle(pc, npc, story_frozen, turn + 1, 'menu')
 
-def end_of_battle(pc, npc):
+
+
+
+def end_of_battle(pc, npc, story_frozen):
+    from adventure.index import adventure
     print(ascii_bar)
     print(f'| {colors.green}After a fierce battle, you have defeated your enemy!{colors.end}')
     xp, gold = npc.get_defeat()
     print(f"| {colors.green}You gain {xp} xp and {gold} gold!{colors.end}")
     pc.add_xp(xp)
     pc.add_gold(gold)
-
+    print(ascii_bar)
+    continue_game('clear')
+    # return to the story
+    story_unfolded = story_frozen[0]
+    choosen_story = story_frozen[1]
+    adventure(pc, story_unfolded, choosen_story)
+    
