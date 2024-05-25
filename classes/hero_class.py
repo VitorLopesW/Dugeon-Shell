@@ -1,6 +1,9 @@
+import random
+
+
 from classes.weapon_class import * 
 from classes.generic_character_class import generic_character
-import random
+from classes.item_class import *
 
 class Hero(generic_character):
     def __init__(self, name):
@@ -16,7 +19,7 @@ class Hero(generic_character):
             'head': 'empty',
             'body': 'empty',
         }
-        self.inventory = ['Lesser Healing Potion','Lesser Healing Potion']
+        self.inventory = [Lesser_healing_potion(), Lesser_healing_potion()]
         # Moral
         self.good_moral = 0
         self.bad_moral = 0
