@@ -14,10 +14,10 @@ class Hero(generic_character):
         # Equipment
         self.gold = 50
         self.equipment = {
-            'left_hand': 'empty',
-            'right_hand': 'empty',
-            'head': 'empty',
-            'body': 'empty',
+            'left_hand': None,
+            'right_hand': None,
+            'head': None,
+            'body': None,
         }
         self.inventory = [Lesser_healing_potion(), Lesser_healing_potion()]
         # Moral
@@ -53,7 +53,7 @@ class Hero(generic_character):
         self.equipment[bodyPart] = item
     def unequip(self, bodyPart, position):
         unequipped_equipment = self.equipment[bodyPart]
-        self.equipment[bodyPart] = 'empty'
+        self.equipment[bodyPart] = None
         if position == 'inventory':
             self.add_to_inventory(unequipped_equipment)
         else:
@@ -64,11 +64,11 @@ class Hero(generic_character):
     def equiped_weapons_name(self):
         left_hand = self.check_equipment('left_hand')
         right_hand = self.check_equipment('right_hand')
-        if left_hand != 'empty' and right_hand != 'empty':
+        if left_hand != None and right_hand != None:
             return f"{left_hand.name} and {right_hand.name}"
-        elif left_hand != 'empty':
+        elif left_hand != None:
             return left_hand.name
-        elif right_hand != 'empty':
+        elif right_hand != None:
             return right_hand.name
         else:
             return 'Unarmed'
@@ -96,7 +96,7 @@ class Hero(generic_character):
             division = 2
         # Minimum and Maximum Damage
         minimum_damage = int(self.__dict__[self.modifier]/division)
-        maximum_damage = self.__dict__[self.modifier]
+        maximum_damage = int(self.__dict__[self.modifier]/2)
         # Total Damage
         total_damage = base_damage + random.randint(minimum_damage, maximum_damage)
         # critical hit

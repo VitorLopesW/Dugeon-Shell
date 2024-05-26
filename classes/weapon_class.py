@@ -16,14 +16,15 @@ class Blade (Weapon):
         self.type = 'Blade'
         self.attacks = [
             slash(),
-            stab(),
-            mordhau()
+            #stab(),
+            #mordhau()
         ]
 
 class rusty_sword (Blade):
     def __init__(self):
         super().__init__()
         self.name = 'Rusty Sword'
+        self.description = 'A rusty sword, but still sharp enough to cut a throat or two, but not much more than that.'
 
 class dagger (Blade):
     def __init__(self):
