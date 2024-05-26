@@ -4,8 +4,6 @@ import random
 from utils.miscellaneous import *
 from adventure.storys  import *
 
-def debug():
-    print('debug')
 def adventure(player, story_unfolded = [], choosen_story = None):
     if choosen_story == None:
         choosen_story = intro(player)
@@ -16,7 +14,7 @@ def adventure(player, story_unfolded = [], choosen_story = None):
         if list[0] == 'new_line':
             print_story(story_unfolded)
             new_line(story_unfolded, list[1])
-            continue_game_with_menu('clear', player)
+            continue_game_with_menu('clear', player, story_unfolded, choosen_story)
         elif list[0] == 'random_event':
             # param 
             # list[1] = list : events

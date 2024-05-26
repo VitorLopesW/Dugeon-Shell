@@ -3,7 +3,7 @@ import sys
 from utils.ascii_arts import *
 from utils.miscellaneous import *
 
-def game_menu(pc):
+def game_menu(pc, story_unfolded, choosen_story):
     while True:
         os.system('cls')
         print(ascii_menu)
@@ -14,18 +14,19 @@ def game_menu(pc):
         player_input = input('Choose an option: ')
         os.system('cls')
         if player_input == '1':
-            break
+            from adventure.index import adventure
+            return adventure(pc, story_unfolded, choosen_story)
         elif player_input == '2':
-            inventory(pc)
+            inventory(pc, story_unfolded, choosen_story)
         elif player_input == '3':
-            equipamens_menu(pc)
+            equipamens_menu(pc, story_unfolded, choosen_story)
         elif player_input == '4':
-            quit(pc)
+            quit(pc, story_unfolded, choosen_story)
         else:
             invalide_option()
             continue_game()
 
-def inventory(pc):
+def inventory(pc, story_unfolded, choosen_story):
     inventory = pc.inventory
     print('inventory: ')
     for item in inventory:
@@ -41,9 +42,9 @@ def inventory(pc):
                 return item.use(pc)
         print(f'{colors.red}Invalid item name, type again.{colors.end}')
                 
-    game_menu(pc)
+    game_menu(pc, story_unfolded, choosen_story)
 
-def equipamens_menu(pc):
+def equipamens_menu(pc, story_unfolded, choosen_story):
     print('Equipaments:')
     body_parts_list = ['Left Hand', 'Right Hand', 'Head', 'Body']
     body_parts_list_lower = [body_part.lower() for body_part in body_parts_list]
@@ -68,17 +69,17 @@ def equipamens_menu(pc):
                 print(f'{colors.green}Item unequiped{colors.end}')
                 from utils.miscellaneous import continue_game
                 continue_game('clear')
-                return equipamens_menu(pc)
+                return equipamens_menu(pc, story_unfolded, choosen_story)
             else:
                 print(f'{colors.red}No item to unequip{colors.end}')
 
-def quit(pc):
+def quit(pc, story_unfolded, choosen_story):
     while True:
         player_input = input('Thanks for playing! Are you sure you want to quit? [Y/N]')
         if player_input.lower() == 'y':
             print('Goodbye!')
             sys.exit()
         elif player_input.lower() == 'n':
-            game_menu(pc)
+            game_menu(pc, story_unfolded, choosen_story)
         else:
             print('Invalid Option')
