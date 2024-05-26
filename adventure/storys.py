@@ -1,5 +1,7 @@
+import random
 
 from classes.enemy_class import *
+from classes.world_class import *
 
 #
 # When i want to create a function who is only used to be a bifurcation of a another story,
@@ -13,31 +15,17 @@ from classes.enemy_class import *
 # New Function: ['new_function', function_name]
 
 def intro(player):
-    introdutory_storys = [
-            ['new_line', f"Welcome to the adventure, {player.name}!"],
-            ['new_line', f"Welcome to the adventure, {player.name}!"],
-            ['new_line', f"Welcome to the adventure, {player.name}!"],
-            ['new_line', f"Welcome to the adventure, {player.name}!"],
-            ['new_line', f"Welcome to the adventure, {player.name}!"],
-            ['new_line', f"Welcome to the adventure, {player.name}!"],
+        world = World()
+        story = [
+                ['new_line', f"Welcome to the adventure, {player.name}!"],
+                ['new_line', "The day begins quietly, a sense of tranquility washes over your heart. You're probably a day's walk from the nearest town."],
+                ['new_line', '']
 
-            ['battle', Goblin('Goblin Green'), intro_part_2(player)],
-    ]
-    return introdutory_storys
-    
-def intro_part_2(player):
-    introdutory_storys = [
-            ['new_line', f"{player.name}, You defeated the goblin!"],
-            ['battle', Goblin('Gobl2in Green'), intro_part_3(player)],
-            ['new_line', f"{player.name}, You defeated the goblin!"],
+        ]
+        story.append(['new_line', ""])
+        story.append(['new_line', ""])
+        story.append(['new_line', ""])
+        story.append(['new_line', ""])
 
-    ]
-    return introdutory_storys
 
-def intro_part_3(player):
-    introdutory_storys = [
-            ['new_line', f"{player.name}, You defeated the goblin!"],
-            ['new_line', f"{player.name}, You defeated the goblin!"],
 
-    ]
-    return introdutory_storys
