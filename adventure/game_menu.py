@@ -1,5 +1,7 @@
 import os
+import sys
 from utils.ascii_arts import *
+from utils.miscellaneous import *
 
 def game_menu(pc):
     while True:
@@ -17,6 +19,11 @@ def game_menu(pc):
             inventory(pc)
         elif player_input == '3':
             equipamens_menu(pc)
+        elif player_input == '4':
+            quit(pc)
+        else:
+            invalide_option()
+            continue_game()
 
 def inventory(pc):
     inventory = pc.inventory
@@ -31,10 +38,9 @@ def inventory(pc):
         # find the first item that has the same name as the player input
         for item in inventory:
             if item.name.lower() == player_input.lower():
-                item.use(pc)
-                break
-            else:
-                print(f'{colors.red}Invalid item name, type again.{colors.end}')
+                return item.use(pc)
+        print(f'{colors.red}Invalid item name, type again.{colors.end}')
+                
     game_menu(pc)
 
 def equipamens_menu(pc):
@@ -66,6 +72,13 @@ def equipamens_menu(pc):
             else:
                 print(f'{colors.red}No item to unequip{colors.end}')
 
-
-        #from utils.miscellaneous import continue_game
-        #continue_game('clear')
+def quit(pc):
+    while True:
+        player_input = input('Thanks for playing! Are you sure you want to quit? [Y/N]')
+        if player_input.lower() == 'y':
+            print('Goodbye!')
+            sys.exit()
+        elif player_input.lower() == 'n':
+            game_menu(pc)
+        else:
+            print('Invalid Option')

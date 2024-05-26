@@ -27,3 +27,5 @@ def continue_game_with_menu(reset = False, pc = None):
         game_menu(pc)
         return continue_game('clear')
 
+def invalide_option():
+    print(f"{colors.red}Invalid Option{colors.end}")

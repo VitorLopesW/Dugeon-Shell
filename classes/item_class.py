@@ -1,3 +1,6 @@
+from utils.miscellaneous import *
+from utils.ascii_arts import colors
+
 class Item:
     def __init__(self):
         self.disposable = None
@@ -23,7 +26,11 @@ class Health_potion(Potion):
         if player.current_hp > player.hp:
             player.current_hp = player.hp
         super().use(player)
-        print(f"{player.name} used a {self.name}, and gained {self.life_gain} hp!")
+        string_text = f"{colors.red}{player.name} used a {self.name}, and gained {self.life_gain} hp!"
+        string_text += '\r\n'
+        string_text += f"{player.name} current hp: {player.current_hp}/{player.hp}{colors.end}"
+        print(string_text)
+        continue_game()
 
 
 class Lesser_healing_potion(Health_potion):
