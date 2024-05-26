@@ -26,6 +26,8 @@ def continue_game_with_menu(reset = False, pc = None, story_unfolded = [], choos
         from adventure.game_menu import game_menu
         game_menu(pc, story_unfolded, choosen_story = None)
         return continue_game('clear')
+    if reset == 'clear':
+        clear_console()
 
 def invalide_option():
     print(f"{colors.red}Invalid Option{colors.end}")
