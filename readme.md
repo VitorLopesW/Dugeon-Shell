@@ -24,5 +24,5 @@
     ```
 4. Run game:
     ```bash
-        python main.py
+    python main.py
     ```
