@@ -34,6 +34,7 @@ def intro(player):
         world.random_weather()
         # random enemy
         get_random_enemy(player)
+        # random npc 
         story.append(['new_line', f"{world.weather_world_building()}, "])
         story.append(['new_line', f""])
         story.append(['new_line', f""])
