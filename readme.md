@@ -1,6 +1,6 @@
-# Dungeon Shell
-
 ⚠️ Note: This is an unfinished and unstable version of the game. Expect frequent updates and changes.
+
+# Dungeon Shell
 
 <p >
 &nbsp; Be my guest in the enchanting world of Dungeon Shell! Forge your destiny in a world of thrilling possibilities!  Become a fearsome warrior, a potent mage, or a shadowy rogue. Embark on an epic adventure! Where every choice determines your fate. Fight for survival, glory, or something even greater in a multitude of randomized battles.
