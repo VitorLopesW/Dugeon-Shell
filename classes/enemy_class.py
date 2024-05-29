@@ -7,7 +7,7 @@ def get_random_enemy(player):
         if random_chance <= 30:
             return Young_wolf('Young Wolf')
         elif random_chance <= 60:
-            Wolf('Wolf')
+            return Wolf('Wolf')
         elif random_chance <= 90:
             return Goblin('Goblin')
         else:

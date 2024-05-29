@@ -19,20 +19,24 @@ def intro(player):
         story = []
         story.append(['new_line', f"Welcome to the world of " + world.name + "!"])
         story.append(['new_line', f"You are a {player.player_class}"])
-        # Class check
+        # Class based story
         if player.player_class == 'Wizard':
-                story.append(['new_line', f"As a wizard, you have the ability to cast spells."])
+                story.append(['new_line', f"young and inexperienced wizard."])
         elif player.player_class == 'Warrior':
-                story.append(['new_line', f"As a warrior, you have the ability to use weapons."])
+                story.append(['new_line', f"You are a novice warrior, with a old sword."])
         elif player.player_class == 'Rogue':
-                story.append(['new_line', f"As a rogue, you have the ability to sneak and use daggers."])
+                story.append(['new_line', f"As a rogue, you are kicked out of your city, because of your crimes."])
+                story.append(['new_line', f"But this is a new day, and you are ready to start a new life."])
+        #
         story.append(['new_line', f"You grab your {player.equiped_weapons_name()} and head out into the world."])
-        story.append(['new_line', f""])
+        story.append(['new_line', f"You have {player.gold} gold, in your pocket."])
         # Random Weather
         world.random_weather()
+        # random enemy
+        get_random_enemy(player)
         story.append(['new_line', f"{world.weather_world_building()}, "])
         story.append(['new_line', f""])
         story.append(['new_line', f""])
-
+        return story
 
 

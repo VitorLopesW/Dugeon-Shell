@@ -13,6 +13,6 @@ class World:
         self.modify_weather(random.choice(weather_list))
     def weather_world_building(self):
         if self.weather == 'sunny':
-            print("The sun is shining.")
+            return "The sun is shining"
         elif self.weather == 'rainy':
-            print("It's raining.")
+            return "It's raining"

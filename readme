@@ -1,39 +1,4 @@
-# Wonderful World of Pytonia
 
-Welcome to the Wonderful World of Pytonia, a text-based terminal game where you embark on an epic adventure in a mystical land full of challenges and mysteries. 
-
-## Table of Contents
-- [Features](#features)
-- [Installation](#installation)
-- [Gameplay](#gameplay)
-- [Screenshots](#screenshots)
-- [Contributing](#contributing)
-- [License](#license)
-
-## Features
-- **Immersive Storyline**: Dive into a rich and engaging story.
-- **Interactive Gameplay**: Make choices that affect the outcome of the game.
-- **Challenges and Puzzles**: Solve puzzles and overcome challenges to progress.
-- **Character Development**: Build and develop your character throughout the game.
-
-## Installation
-1. Clone the repository:
-    ```bash
-    git clone https://github.com/yourusername/wonderful-world-of-pytonia.git
-    ```
-2. Navigate to the project directory:
-    ```bash
-    cd wonderful-world-of-pytonia
-    ```
-3. (Optional) Create and activate a virtual environment:
-    ```bash
-    python3 -m venv venv
-    source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
-    ```
-4. Install the required dependencies:
-    ```bash
-    pip install -r requirements.txt
-    ```
 
 ## Gameplay
 Run the game using the following command:
