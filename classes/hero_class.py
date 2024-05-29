@@ -8,6 +8,7 @@ from classes.item_class import *
 class Hero(generic_character):
     def __init__(self, name):
         super().__init__(name)
+        self.player_class = 'Classless Hero'
         # Level Up
         self.level = 1
         self.xp = 0
@@ -117,11 +118,11 @@ class Hero(generic_character):
             special_effect = check_special_effect.name
         # return
         return int(total_damage), critical_chance >= 90, velocity, special_effect
-    
 
 class Warrior(Hero):
     def __init__(self, name):
         super().__init__(name)
+        self.player_class = 'Warrior'
         # Stats
         self.hp = 16
         self.current_hp = self.hp
@@ -142,6 +143,7 @@ class Warrior(Hero):
 class Wizard(Hero):
     def __init__(self, name):
         super().__init__(name)
+        self.player_class = 'Wizard'
         # Stats
         self.hp = 12
         self.current_hp = self.hp
@@ -161,6 +163,7 @@ class Wizard(Hero):
 class Rogue(Hero):
     def __init__(self, name):
         super().__init__(name)
+        self.player_class = 'Rogue'
         #Stats
         self.hp = 14
         self.current_hp = self.hp

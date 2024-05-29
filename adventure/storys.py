@@ -16,16 +16,23 @@ from classes.world_class import *
 
 def intro(player):
         world = World()
-        story = [
-                ['new_line', f"Welcome to the adventure, {player.name}!"],
-                ['new_line', "The day begins quietly, a sense of tranquility washes over your heart. You're probably a day's walk from the nearest town."],
-                ['new_line', '']
-
-        ]
-        story.append(['new_line', ""])
-        story.append(['new_line', ""])
-        story.append(['new_line', ""])
-        story.append(['new_line', ""])
+        story = []
+        story.append(['new_line', f"Welcome to the world of " + world.name + "!"])
+        story.append(['new_line', f"You are a {player.player_class}"])
+        # Class check
+        if player.player_class == 'Wizard':
+                story.append(['new_line', f"As a wizard, you have the ability to cast spells."])
+        elif player.player_class == 'Warrior':
+                story.append(['new_line', f"As a warrior, you have the ability to use weapons."])
+        elif player.player_class == 'Rogue':
+                story.append(['new_line', f"As a rogue, you have the ability to sneak and use daggers."])
+        story.append(['new_line', f"You grab your {player.equiped_weapons_name()} and head out into the world."])
+        story.append(['new_line', f""])
+        # Random Weather
+        world.random_weather()
+        story.append(['new_line', f"{world.weather_world_building()}, "])
+        story.append(['new_line', f""])
+        story.append(['new_line', f""])
 
 
 

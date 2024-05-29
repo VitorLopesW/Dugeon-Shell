@@ -142,8 +142,8 @@ def attack_logic(pc, npc, story_frozen, turn, weapon, attack):
     attack_stats = pc.get_attack(weapon, attack)
     attack_damage, attack_critical, attack_velocity, attack_special = attack_stats
     # Enemy Attack  
-        # tuple : attack stats
         # str: attack description
+        # tuple : attack stats
         # float : velocity
         # str : special effect
     enemy_attack = npc.get_attack()
