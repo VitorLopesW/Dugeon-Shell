@@ -3,5 +3,5 @@
 </div>
 <hr>
 <p>
-    Be my guest
+    Be my guest in the enchanting world of Mysteries in Pythonia!
 </p>
