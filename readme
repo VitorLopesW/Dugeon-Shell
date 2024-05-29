@@ -1,9 +1,2 @@
+<h1 align="left">Hey 👋 What's up?</h1>
 
-<h1>Mysteries Of Pythonia</h1>
-<p align="center">
-  <img src="https://github.com/waldyr/Sublime-Installer/blob/master/sublime_text.png?raw=true" alt="Sublime's custom image"/>
-</p>
-## Gameplay
-Run the game using the following command:
-```bash
-python main.py
