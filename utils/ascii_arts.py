@@ -1,5 +1,5 @@
 # DEV MODE REMOVE ME LATER
-dev_mode = True
+dev_mode = False
 
 # Colors 
 

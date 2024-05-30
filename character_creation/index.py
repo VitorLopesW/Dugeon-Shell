@@ -2,7 +2,7 @@ from classes.hero_class import *
 from utils.ascii_arts import *
 from adventure.index import *
 
-def create_character(player):
+def create_character():
     print('Welcome to the character creation!')
     # Name
     name = input('Enter your name: ')

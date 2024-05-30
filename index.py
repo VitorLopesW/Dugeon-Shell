@@ -13,10 +13,9 @@ from combat.index import *
 from utils.miscellaneous import *
 from utils.ascii_arts import *
 
-player = None
 
 # Dev_Mode
-dev_mode = True
+dev_mode = False
 
 def newGame():
     ## DELETE THIS LINE IN THE FINAL VERSION
@@ -26,7 +25,7 @@ def newGame():
         adventure(player)
     else:
         ascii_new_game()
-        create_character(player)
+        create_character()
 
 def ascii_new_game():
     clear_console()
