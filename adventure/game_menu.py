@@ -4,6 +4,7 @@ from utils.ascii_arts import *
 from utils.miscellaneous import *
 
 def game_menu(pc, story_unfolded, choosen_story):
+
     while True:
         os.system('cls')
         print(ascii_menu)

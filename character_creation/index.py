@@ -31,7 +31,8 @@ def create_character():
             if are_you_sure(player):
                 break
         character_class = input('Choose your class: 1 - Warrior, 2 - Mage, 3 - Rogue: ')
-    adventure(player)
+    from adventure.storys import intro
+    adventure(player, [], intro(player))
 
 
 def are_you_sure(player):

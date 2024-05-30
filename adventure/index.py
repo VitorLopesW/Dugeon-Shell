@@ -1,20 +1,19 @@
 import os
 import random
+import copy
 
+from utils.ascii_arts import *
 from utils.miscellaneous import *
 from adventure.storys  import *
 
-def adventure(player, story_unfolded = [], choosen_story = None):
-    if choosen_story == None:
-        choosen_story = intro(player)
-        #choosen_story = story_battle(player)
-
-
+def adventure(player, story_unfolded, choosen_story):
+    pause_choosen_story = copy.deepcopy(choosen_story)
     for list in choosen_story:
         if list[0] == 'new_line':
             print_story(story_unfolded)
             new_line(story_unfolded, list[1])
-            continue_game_with_menu('clear', player, story_unfolded, choosen_story)
+            pause_choosen_story.pop(0)
+            continue_game_with_menu('clear', player, story_unfolded, pause_choosen_story)
         elif list[0] == 'random_event':
             # param 
             # list[1] = list : events
@@ -32,10 +31,10 @@ def adventure(player, story_unfolded = [], choosen_story = None):
             while True:
                 print_story(story_unfolded)
                 while True:
-                    player_input = input(f"{colors.yellow}{list[1]}{colors.end}")
+                    player_input = input(f"\033[93m{list[1]}\033[0m")
                     options_list = list[2]
                     paths_list = list[3]
-                    if player_input in options_list:
+                    if player_input.lower() in options_list:
                         input_index = options_list.index(player_input)
                         choosen_story = paths_list[input_index]
                         clear_console()
@@ -43,7 +42,7 @@ def adventure(player, story_unfolded = [], choosen_story = None):
                     else:
                         clear_console()
                         print_story(story_unfolded)
-                        print(f"{colors.red}Invalid option{colors.end}")
+                        print(f"\033[91mInvalid option\033[0m")
         elif list[0] == 'battle':
             from combat.index import battle
             # param 

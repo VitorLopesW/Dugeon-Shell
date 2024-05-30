@@ -15,14 +15,15 @@ from utils.ascii_arts import *
 
 
 # Dev_Mode
-dev_mode = False
+dev_mode = True
 
 def newGame():
     ## DELETE THIS LINE IN THE FINAL VERSION
     if dev_mode:
         clear_console()
         player = Warrior('Vitor')
-        adventure(player)
+        from adventure.storys import intro
+        adventure(player, [], intro(player))
     else:
         ascii_new_game()
         create_character()

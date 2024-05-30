@@ -83,7 +83,7 @@ class Wolf(generic_character):
         # Stats
         self.strength = 1
         self.agility = 6
-        self.intelligence = 1
+        self.intelligence = 0
         self.luck = 1
     def get_attack(self):
         attack_random = random.randint(1, 3)
@@ -113,7 +113,6 @@ class Young_wolf(Wolf):
         self.current_hp = self.hp
         self.strength = 1
         self.agility = 4
-        self.intelligence = 1
         self.luck = 1
     def get_defeat(self):
         xp = 10 + random.randint(1, 20)
