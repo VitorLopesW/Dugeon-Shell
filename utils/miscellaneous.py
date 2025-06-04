@@ -11,7 +11,9 @@ def porcentage(a, b):
     return result
     
 def clear_console():
-    os.system('cls')
+    """Clear the terminal screen in a platform independent way."""
+    command = 'cls' if os.name == 'nt' else 'clear'
+    os.system(command)
 
 def continue_game(reset = False):
     continue_text = f"{colors.cyan}Press enter key to continue...{colors.end}"
