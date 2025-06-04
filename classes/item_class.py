@@ -37,7 +37,25 @@ class Lesser_healing_potion(Health_potion):
     def __init__(self):
         super().__init__()
         self.name = 'Lesser Healing Potion'
-        self.description = 'A small red potion, that heals 5 hp' 
+        self.description = 'A small red potion, that heals 5 hp'
         self.life_gain = 5
     def use(self, player):
         super().use(player)
+
+class Food(Item):
+    def __init__(self, name, hunger_restore):
+        super().__init__()
+        self.name = name
+        self.hunger_restore = hunger_restore
+        self.disposable = True
+    def use(self, player):
+        player.modify_hunger(self.hunger_restore)
+        super().use(player)
+        string_text = f"{colors.yellow}{player.name} eats {self.name} and restores {self.hunger_restore} hunger!{colors.end}"
+        print(string_text)
+        continue_game()
+
+class Bread(Food):
+    def __init__(self):
+        super().__init__('Bread', 20)
+        self.description = 'A simple loaf of bread.'

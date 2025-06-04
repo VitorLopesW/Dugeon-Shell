@@ -78,3 +78,15 @@ def intro_girl_saved(player, npcs, world):
         return story
 def intro_end(player, npcs, world):
         return [['new_line', f"You decide to ignore the noise and continue on your journey."]]
+
+def hunger_story(player):
+        story = []
+        if player.hunger > 70:
+                story.append(['new_line', 'You feel well fed and ready for adventure.'])
+        elif player.hunger > 40:
+                story.append(['new_line', 'Your stomach rumbles softly.'])
+        elif player.hunger > 10:
+                story.append(['new_line', 'Hunger gnaws at you, sapping your strength.'])
+        else:
+                story.append(['new_line', 'Starvation grips you. Each step is painful.'])
+        return story

@@ -20,10 +20,23 @@ class Hero(generic_character):
             'head': None,
             'body': None,
         }
-        self.inventory = [Lesser_healing_potion(), Lesser_healing_potion()]
+        self.inventory = [Lesser_healing_potion(), Bread()]
+        # Survival
+        self.hunger = 100
         # Moral
         self.good_moral = 0
         self.bad_moral = 0
+    # Hunger Management
+    def modify_hunger(self, value):
+        self.hunger += value
+        if self.hunger > 100:
+            self.hunger = 100
+        if self.hunger < 0:
+            self.hunger = 0
+    def hunger_turn(self):
+        self.modify_hunger(-1)
+        if self.hunger <= 0:
+            self.modify_hp(-1)
     # Level Up
     def level_up(self):
         self.level += 1
@@ -181,4 +194,25 @@ class Rogue(Hero):
         self.agility += 2
         self.luck += 1
         print(f"str: {self.strength}, agi: {self.agility}, int: {self.intelligence}, luck: {self.luck}")
+
+class Berserker(Hero):
+    def __init__(self, name):
+        super().__init__(name)
+        self.player_class = 'Berserker'
+        # Stats
+        self.hp = 20
+        self.current_hp = self.hp
+        self.strength = 12
+        self.agility = 6
+        self.intelligence = 2
+        self.modifier = 'strength'
+        # Equipment
+        self.equipment['right_hand'] = rusty_sword()
+    def level_up(self):
+        super().level_up()
+        self.strength += 2
+        self.hp += 2
+        self.current_hp = self.hp
+        print(f"str: {self.strength}, hp: {self.hp}")
+
 

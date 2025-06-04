@@ -17,6 +17,8 @@ This is a text-based RPG and adventure game that runs in the terminal. Experienc
 - Character Development: Customize your character and watch them grow as you progress.
 - Choices Matter: Make decisions that influence the outcome of your adventure.
 - Text-Based Interface: Enjoy the simplicity and charm of a purely text-driven game.
+- Hunger System: Manage your hunger as you explore the world.
+- New Berserker class.
 
 ## Installation
 1. Clone the repository:
