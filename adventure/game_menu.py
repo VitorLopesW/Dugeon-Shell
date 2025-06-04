@@ -6,14 +6,14 @@ from utils.miscellaneous import *
 def game_menu(pc, story_unfolded, choosen_story):
 
     while True:
-        os.system('cls')
+        clear_console()
         print(ascii_menu)
         print(f'{colors.red}1 - Continue.{colors.end}')
         print(f'{colors.green}2 - inventory{colors.end}')
         print(f'{colors.yellow}3 - Equipaments{colors.end}')
         print(f'{colors.blue}4 - Quit{colors.end}')
         player_input = input('Choose an option: ')
-        os.system('cls')
+        clear_console()
         if player_input == '1':
             from adventure.index import adventure
             return adventure(pc, story_unfolded, choosen_story)
